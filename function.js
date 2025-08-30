@@ -76,3 +76,7 @@ function result(Pass){
     Pass(fail)
 }
 result(displayResult)
+
+function suji(name){
+    console.log(`Hello ${name}`)
+} suji ("suji")
