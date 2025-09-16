@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Full Notes in Order</title>
+  <style>
+    .blueText {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SAMPLE HTML ELEMENTS FOR PRACTICE ===== -->
+  <div id="myDiv">This is myDiv (ID Example)</div>
+
+  <p name="paraName">This is paragraph with name</p>
+  <p name="paraName">This is another paragraph with name</p>
+
+  <p class="blueText">This is class example 1</p>
+  <p class="blueText">This is class example 2</p>
+
+  <p>This is paragraph 1</p>
+  <p>This is paragraph 2</p>
+
+  <p class="greet">Hello</p>
+  <p class="greet">Hi</p>
+
+  <div id="parentElement">
+    <p>Child 1</p>
+    <p>Child 2</p>
+    <p>Child 3</p>
+  </div>
+
+  <div class="main">
+    <p id="note">This is a note</p>
+  </div>
+
+  <div id="removeMe">
+    <p>This will be removed</p>
+  </div>
+  <button onclick="removeElement()">Remove element</button>
+
+  <div id="sample" data-info="This is custom data attribute"></div>
+
+  <button id="btnsend">send</button>
+
+  <script>
+    /* ==========================================================
+       DOM = Document Object Model
+       - JS ku HTML oda structure (elements) oda access kudukkum
+       - Namma HTML tags ah JS la manipulate panna DOM use pannuvom
+       ========================================================== */
+
+    // 1. Get Element by ID ==========================
+    const myDiv = document.getElementById("myDiv");
+    console.log("Get by ID:", myDiv.textContent);
+
+    // 2. Get Elements by Name ==========================
+    const parasByName = document.getElementsByName("paraName");
+    for (let i = 0; i < parasByName.length; i++) {
+      parasByName[i].style.fontWeight = "bold";
+    }
+
+    // 3. Get Elements by Class Name ==========================
+    const classParas = document.getElementsByClassName("blueText");
+    for (let i = 0; i < classParas.length; i++) {
+      classParas[i].textContent = "Updated with ClassName " + (i + 1);
+    }
+
+    // 4. Get Elements by Tag Name ==========================
+    const allParas = document.getElementsByTagName("p");
+    for (let i = 0; i < allParas.length; i++) {
+      console.log("TagName para:", allParas[i].textContent);
+    }
+
+    // 5. Query Selector (returns FIRST match only) ==========
+    const firstGreeting = document.querySelector(".greet");
+    console.log("QuerySelector (first greet):", firstGreeting.textContent);
+
+    // 6. Query Selector All (returns NodeList) ==============
+    const allGreetings = document.querySelectorAll(".greet");
+    allGreetings.forEach((el) => console.log("QuerySelectorAll greet:", el.textContent));
+
+    // 7. Access Child Elements ==============================
+    const parentEl = document.getElementById("parentElement");
+    const children = parentEl.children;
+    for (let i = 0; i < children.length; i++) {
+      children[i].style.color = "red"; // all children red color
+    }
+
+    // 8. Access Parent Element ==============================
+    const noteElement = document.getElementById("note");
+    console.log("Parent of note:", noteElement.parentElement);
+
+    // 9. Create DOM Elements ================================
+    const newPara = document.createElement("p"); // new paragraph
+    newPara.textContent = "This is dynamically created para";
+    document.body.appendChild(newPara);
+
+    const newButton = document.createElement("button");
+    newButton.textContent = "Click Me";
+    newPara.appendChild(newButton);
+
+    // 10. Remove DOM Elements ===============================
+    function removeElement() {
+      const toRemove = document.getElementById("removeMe");
+      toRemove.remove();
+    }
+
+    // 11. Get Attribute of an Element ========================
+    const sampleDiv = document.getElementById("sample");
+    console.log("Get attribute data-info:", sampleDiv.getAttribute("data-info"));
+
+    // 12. Create or Update Attributes ========================
+    const btn = document.getElementById("btnsend");
+    btn.setAttribute("name", "sendButton"); // create
+    btn.setAttribute("id", "btnclick"); // update id
+  </script>
+</body>
+</html>

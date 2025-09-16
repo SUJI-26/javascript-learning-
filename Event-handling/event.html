@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Event Handling Notes</title>
+</head>
+<body>
+    <!-- 
+    🔹 Example 1: Inline Event Handler (onclick directly in HTML element)
+    -->
+    <button onclick="alert('Clicked!')">Click Me</button>
+
+    <!-- 
+    🔹 Example 2: Call JS Function on click
+    -->
+    <button onclick="showAlert()">Call Function</button>
+
+    <!-- 
+    🔹 Example 3: Event Listener using DOM (Best Practice)
+    -->
+    <button id="btn">This is a button</button>
+
+
+    <!-- 
+    🔹 Example 4: Change Text Content on Button Click
+    -->
+    <p id="examplePara">Click the button to change this text</p>
+    <button id="mybtn">Clk me</button>
+
+    <!-- 
+    🔹 Example 5: Mouse Events (mouseover & mouseout)
+    -->
+    <div id="mouseEvent">Hover over Me!</div>
+
+    <!-- 
+    🔹 Example 6: Keyboard Events (keydown & keyup)
+    -->
+    <label for="textInput">Type something:</label> <br>
+    <input type="text" id="textInput">
+
+
+    <script>
+        // Example 2: Function for onclick
+        function showAlert(){
+            alert("Clicked JavaScript function!")
+        }
+
+        // Example 3: Event Listener with DOM
+        const btnelement = document.getElementById('btn');
+        btnelement.addEventListener('click', function(event){
+            alert('Clicked and Listened by DOM. Event type: ' + event.type);
+        });
+
+        // Example 4: Change paragraph text on button click
+        const paragraphElement = document.getElementById('examplePara');
+        const buttonElement = document.getElementById('mybtn');
+
+        buttonElement.addEventListener('click', function(){
+            paragraphElement.textContent = "Text is Changed";
+        });
+
+        // Example 5: Mouse Events
+        const mouseEventElement = document.getElementById('mouseEvent');
+
+        mouseEventElement.addEventListener('mouseover', function(){
+            mouseEventElement.textContent = "Mouse Hover";
+        });
+
+        mouseEventElement.addEventListener('mouseout', function(){
+            mouseEventElement.textContent = "Mouse Over Me";
+        });
+
+        // Example 6: Keyboard Events
+        const textInputelement = document.getElementById('textInput');
+
+        // 🔹 keydown → when a key is pressed down
+        textInputelement.addEventListener('keydown', function(event) {
+            console.log("keydown Happened: " + event.key);
+        });
+
+        // 🔹 keyup → when a key is released
+        textInputelement.addEventListener('keyup', function(event) {
+            console.log("keyup Happened: " + event.key);
+        });
+    </script>
+</body>
+</html>
